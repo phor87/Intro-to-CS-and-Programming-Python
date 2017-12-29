@@ -11,8 +11,9 @@ def isWordGuessed(secretWord, lettersGuessed):
         if letters not in lettersGuessed:
             return False
         else:
-            return True
+            continue
+    return True
 
-secretWord = 'apple'
-lettersGuessed = ['a', 'l', 'e', 'p', 'r', 's']
-print(isWordGuessed(secretWord, lettersGuessed))
+print(isWordGuessed('apple', ['a', 'e', 'i', 'k', 'p', 'r', 's']))
+print(isWordGuessed('coconut', ['b', 'r', 'w', 'm', 'u', 'a', 'k', 'l', 'f', 'c']))
+print(isWordGuessed('durian', ['h', 'a', 'c', 'd', 'i', 'm', 'n', 'r', 't', 'u']))
