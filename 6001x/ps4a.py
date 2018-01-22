@@ -90,7 +90,6 @@ def displayHand(hand):
     Displays the letters currently in the hand.
 
     For example:
-    >>> displayHand({'a':1, 'x':2, 'l':3, 'e':1})
     Should print out something like:
        a x x l l l e
     The order of the letters is unimportant.
@@ -99,7 +98,7 @@ def displayHand(hand):
     """
     for letter in hand.keys():
         for j in range(hand[letter]):
-             print(letter,end=" ")       # print all on the same line
+             print(letter, end=' ')       # print all on the same line
     print()                             # print an empty line
 
 #
@@ -227,33 +226,40 @@ def playHand(hand, wordList, n):
     """
     # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
     # Keep track of the total score
-    
+    totalscore = 0
     # As long as there are still letters left in the hand:
-    
+    while not all(x==0 for x in hand.values()):
         # Display the hand
-        
+        print('Current Hand:', end=' ')
+        displayHand(hand)
         # Ask user for input
-        
+        uinput = input("Enter word, or a \".\" to indicate that you are finished: ")
         # If the input is a single period:
-        
+        if uinput == '.':
             # End the game (break out of the loop)
-
+            break
             
         # Otherwise (the input is not a single period):
-        
+        else:
             # If the word is not valid:
-            
+            if isValidWord(uinput, hand, wordList) == False:
                 # Reject invalid word (print a message followed by a blank line)
-
+                print('Invalid word, please try again.')
+                print()
             # Otherwise (the word is valid):
-
+            else:
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
-                
+                totalscore += getWordScore(uinput, n)
+                print('\"' + uinput + '\" earned', getWordScore(uinput, n), 'points. Total:', totalscore, 'points')
+                print()
                 # Update the hand 
-                
+                hand = updateHand(hand, uinput)
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
-
+    if uinput == '.':
+        print('Goodbye! Total score:', totalscore, 'points.')
+    else:
+        print('Run out of letters. Total score:', totalscore, 'points.')
 
 #
 # Problem #5: Playing a game
