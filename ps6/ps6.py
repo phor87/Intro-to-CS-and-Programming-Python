@@ -55,6 +55,10 @@ def get_story_string():
 
 WORDLIST_FILENAME = 'words.txt'
 
+def decrypt_story():
+    a = CiphertextMessage(get_story_string())
+    return a.decrypt_message()
+
 class Message(object):
     ### DO NOT MODIFY THIS METHOD ###
     def __init__(self, text):
